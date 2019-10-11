@@ -15,7 +15,7 @@ const compiler = {
 
 const VYPER_PATTERN = "**/*.{vy,v.py,vyper.py}";
 
-// -------- TODO: Common with @truffle/compile-solidity --------
+// -------- Common helpers --------
 
 const compile = {};
 
@@ -23,25 +23,9 @@ compile.all = Common.all;
 
 compile.necessary = Common.necessary;
 
-compile.display = function(paths, options) {
-  if (!Array.isArray(paths)) {
-    paths = Object.keys(paths);
-  }
+compile.display = Common.display;
 
-  const sourceFileNames = paths.sort().map(contract => {
-    if (path.isAbsolute(contract)) {
-      return `.${path.sep}${path.relative(
-        options.working_directory,
-        contract
-      )}`;
-    }
-
-    return contract;
-  });
-  options.events.emit("compile:sourcesToCompile", sourceFileNames);
-};
-
-// -------- End of common with @truffle/compile-solidity --------
+// -------- End of Common helpers --------
 
 // Check that vyper is available, save its version
 function checkVyper(callback) {
