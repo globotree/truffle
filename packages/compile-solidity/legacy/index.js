@@ -69,8 +69,8 @@ compile.with_dependencies = function(options, callback) {
       var hasTargets = required.length;
 
       hasTargets
-        ? self.calculateCompiledSources(required, options)
-        : self.calculateCompiledSources(allSources, options);
+        ? self.display(required, options)
+        : self.display(allSources, options);
 
       options.compilationTargets = required;
       compile(allSources, options, callback);
